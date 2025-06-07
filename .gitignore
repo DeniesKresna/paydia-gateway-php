@@ -1,0 +1,4 @@
+.env
+/ssh-key
+/src/*.pem
+/src/*.env
