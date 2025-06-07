@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/helper.php';
+require_once __DIR__ . '/helper.php'; // NOTE: use this for debug log. exmple: debug_log('functionname', data);
 require_once __DIR__ . '/snap_interface.php';
 
 class PaydiaGateway implements SnapInterface
@@ -17,6 +17,8 @@ class PaydiaGateway implements SnapInterface
 
     public function __construct()
     {
+        // NOTE: this setup the properties of class
+        // you can use your own method to define it your way
         $env_path = __DIR__ . '/.env';
         if (!file_exists($env_path)) {
             die('Environment file not found at: ' . $env_path);
@@ -37,10 +39,6 @@ class PaydiaGateway implements SnapInterface
 
     private function getAsymmetricSignature(string $timestamp): string {
         $stringToSign = $this->clientId . '|' . $timestamp;
-
-        debug_log("getAsymmetricSignature - CLIENT_ID", $this->clientId);
-
-        debug_log("getAsymmetricSignature - timestamp", $timestamp);
 
         $privateKey = file_get_contents($this->privateKeyPath);
         if (!$privateKey) {
@@ -91,6 +89,7 @@ class PaydiaGateway implements SnapInterface
         return $date . $timestamp . $random;
     }
 
+    // NOTE: this only for validation. you can use or not. See Line 209
     private function getValidateQrMpmRequestError(array $data): array {
         $errors = [];
 
@@ -207,6 +206,7 @@ class PaydiaGateway implements SnapInterface
     }
 
     public function createQrMpm(string $partner_reference_no, int $amount, string $validity_period): array {
+        // this for validate input only, you can skip optionally
         $validation_data = [
             'partner_reference_no'=> $partner_reference_no,
             'amount'=> $amount,
@@ -220,6 +220,7 @@ class PaydiaGateway implements SnapInterface
                 'message' => implode("; ", $errors)
             ];
         }
+        // end of validation
 
         $timestamp = (new DateTime('now', new DateTimeZone('Asia/Jakarta')))->format('c');
 
