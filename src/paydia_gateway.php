@@ -206,7 +206,7 @@ class PaydiaGateway implements SnapInterface
     }
 
     public function createQrMpm(string $partner_reference_no, int $amount, string $validity_period): array {
-        // this for validate input only, you can skip optionally
+        // NOTE: this for validate input only, you can skip optionally
         $validation_data = [
             'partner_reference_no'=> $partner_reference_no,
             'amount'=> $amount,
