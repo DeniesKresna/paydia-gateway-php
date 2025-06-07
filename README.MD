@@ -2,6 +2,7 @@
 
 A minimal service for **testing Snap’s “create QR” flow** through the Paydia Gateway.  
 It spins up a PHP + Nginx stack in Docker and lets you hit a single endpoint that proxies your request to Paydia’s SNAP API.
+Paydia: <https://snap-docs.paydia.id/>
 
 ---
 
@@ -30,7 +31,7 @@ Make sure Docker Desktop (or Docker Engine) is running before continuing.
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/denieskresna/paydia-gateway-php.git
+   git clone https://github.com/DeniesKresna/paydia-gateway-php.git
    cd your-repo
    ```
 2. **Generate a PKCS#8 private key**
