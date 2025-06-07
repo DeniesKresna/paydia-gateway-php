@@ -181,7 +181,6 @@ class PaydiaGateway implements SnapInterface
         ];
 
         $response = $this->callSnapApi($this->snapTokenUrl, $headers, $body);
-        debug_log("createBearerToken - response", $response);
 
         if (!$response['success']) {
             return [
